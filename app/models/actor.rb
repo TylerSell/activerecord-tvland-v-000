@@ -8,8 +8,15 @@ class Actor < ActiveRecord::Base
   end
   
   def list_roles 
-    self.characters.collect do |character|
+    roles = []
+    array_char = self.characters.collect do |character|
       character.name
     end
+    array_show = self.shows.collect do |show|
+      show.name 
+    end
+    role = array_char.concat array_show
+    roles << role.join(" - ")
+    roles
   end
 end
